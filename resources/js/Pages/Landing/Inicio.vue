@@ -15,17 +15,17 @@
                 </el-carousel>
             </section>
 
-            <!-- Seccion 2 -->
+            <!-- Seccion 2 Fletes y mudanzas -->
             <section>
-                <h2 class="text-2xl font-bold text-white text-center mt-36 mb-5">NUESTROS SERVICIOS</h2>
-                <article class="bg-[#292929] py-7 px-14 flex space-x-5 relative">
-                    <div class="w-[40%]">
+                <h2 class="text-2xl font-bold text-white text-center mt-36 mb-8">NUESTROS SERVICIOS</h2>
+                <article class="bg-[#292929] pt-8 pb-28 md:px-14 px-5 md:flex md:space-x-5 relative">
+                    <div class="md:w-[40%] mb-9 md:mb-0">
                         <h3 class="text-xl text-white font-bold mb-10 mt-7">FLETES Y MUDANZAS</h3>
                         <p class="text-white text-lg">Ya sea que necesites trasladar muebles dentro de la ciudad o mudarte a otra región, nuestro equipo maneja cada detalle con precisión.</p>
                     </div>
 
                     <!-- carousel -->
-                    <Carousel class="w-[60%]" v-bind="popularSettings" :breakpoints="breakpoints">
+                    <Carousel class="md:w-[60%]" v-bind="fletesMudanzasSettings" :breakpoints="breakpoints">
                         <Slide v-for="slide in groupImages2" :key="slide">
                             <img :src="slide" alt="">
                         </Slide>
@@ -40,10 +40,39 @@
                         <svg width="106" height="36" viewBox="0 0 106 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M66.9838 5.8904C76.3902 7.81014 81.4576 9.75287 89.6001 16.8356H77.4759V15.4383H85.1701C79.1546 9.91102 74.8704 8.32317 66.9838 5.8904ZM85.1701 18.2328C87.8718 18.0313 89.1867 18.1651 90.9991 18.9314L91.4654 21.726L104.989 25.2191V31.2739C105.108 27.4215 104.341 25.9099 100.325 25.2191L85.1701 22.1917V18.2328ZM82.8385 34.9999C90.7707 24.9756 94.4407 35.0381 94.4964 34.9999C94.5522 34.9617 92.114 22.9843 82.8385 34.9999ZM73.279 16.8356H74.4448V29.178H73.279V16.8356ZM63.4864 29.6437V1L1 1.69863L61.6211 2.63013V29.6437H63.4864ZM60.2222 7.05477V9.38353L1 8.45203L60.2222 7.05477ZM60.2222 16.8356V18.9314L1 18.2328L60.2222 16.8356ZM60.2222 26.3835V28.4794L1.23316 28.0136L60.2222 26.3835ZM15.9221 34.0684C24.1022 22.8017 27.462 35.6768 26.4142 34.0684C25.3665 32.46 23.0259 26.1058 15.9221 34.0684ZM1.46632 33.8355C7.42052 28.5991 9.96917 28.468 12.4248 34.0684C10.0001 26.4954 7.25771 27.8582 1.46632 33.8355Z" stroke="#9B9B9B" stroke-width="1.5"/>
                         </svg>
-                        <p class="text-white italic">Nos aseguramos que cada objeto llegue a su destino de forma segura y a tiempo.</p>
+                        <p class="text-white italic mt-2">Nos aseguramos que cada objeto llegue a su destino de forma segura y a tiempo.</p>
                     </div>
                 </article>
             </section>
+
+            <!-- seccion 3 Mantenimiento y reparación -->
+            <section class="mt-40 py-8 px-5 lg:mx-32">
+                <article class="md:flex md:space-x-5">
+                    <figure class="md:w-2/3">
+                        <img src="@/../../public/images/Mantenimiento.png" alt="">
+                    </figure>
+
+                    <div class="md:w-1/3 mt-10 md:mt-0">
+                        <h3 class="text-xl font-bold text-white mb-10">MANTENIMIENTO Y SERVICIO TÉCNICO</h3>
+                        <p class="text-white text-lg">Ofrecemos mantenimiento y servicio técnico especializado para una amplia gama de electrodomésticos, desde refrigeradores, lavadoras, hasta aires acondicionados y mucho más.</p>
+                        <img class="mt-9" src="@/../../public/images/Mantenimiento_2.png" alt="">
+                    </div>
+                </article>
+
+                <h2 class="text-2xl font-bold text-white mt-28 mb-10">SERVICIO DE REPARACIÓN PARA TODAS LAS MARCAS</h2>
+
+                <!-- carousel -->
+                <Carousel v-bind="branchesSettings" :breakpoints="BranchesBreakpoints">
+                    <Slide v-for="slide in branchesImages" :key="slide">
+                        <img class="w-1/3 md:w-[70%]" :src="slide" alt="">
+                    </Slide>
+
+                    <template #addons>
+                        <Navigation />
+                    </template>
+                </Carousel>
+            </section>
+
         </main>
     </LandingLayout>
 </template>
@@ -62,6 +91,13 @@ import Group2_1 from '@/../../public/images/Group2_1.png';
 import Group2_2 from '@/../../public/images/Group2_2.png';
 import Group2_3 from '@/../../public/images/Group2_3.png';
 import Group2_4 from '@/../../public/images/Group2_4.png';
+import whirpool from '@/../../public/images/whirpool.png';
+import mabe from '@/../../public/images/mabe.png';
+import samsung from '@/../../public/images/samsung.png';
+import lg from '@/../../public/images/lg.png';
+import daewoo from '@/../../public/images/daewoo.png';
+import panasonic from '@/../../public/images/panasonic.png';
+import bosch from '@/../../public/images/bosch.png';
 
 //carousel
 import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
@@ -84,21 +120,58 @@ data() {
             Group2_3,
             Group2_4
         ],
-        popularSettings: {
+        branchesImages: [
+            panasonic,
+            whirpool,
+            samsung,
+            daewoo,
+            bosch,
+            mabe,
+            lg,
+        ],
+        fletesMudanzasSettings: {
             wrapAround: true,
             itemsToShow: 2,
             snapAlign: 'start',
             autoplay: 4000,
         },
+        branchesSettings: {
+            wrapAround: true,
+            itemsToShow: 5,
+            snapAlign: 'start',
+            autoplay: 4000,
+        },
         breakpoints: {
+            // 320px and up
+            320: {
+                itemsToShow: 1,
+                snapAlign: 'start',
+            },
             // 700px and up
             700: {
-                itemsToShow: 2,
+                itemsToShow: 1.25,
                 snapAlign: 'start',
             },
             // 1024 and up
             1024: {
                 itemsToShow: 2,
+                snapAlign: 'start',
+            },
+        },
+        BranchesBreakpoints: {
+            // 320px and up
+            320: {
+                itemsToShow: 2,
+                snapAlign: 'start',
+            },
+            // 700px and up
+            700: {
+                itemsToShow: 3,
+                snapAlign: 'start',
+            },
+            // 1024 and up
+            1024: {
+                itemsToShow: 5,
                 snapAlign: 'start',
             },
         },
@@ -185,5 +258,4 @@ beforeUnmount() {
     /* Cambia el fondo al hacer hover */
     /* transform: scale(1.1); Efecto de escalado al hacer hover */
 }
-
 </style>
