@@ -59,7 +59,7 @@
                     </div>
                 </article>
 
-                <h2 class="text-2xl font-bold text-white mt-28 mb-10">SERVICIO DE REPARACIÓN PARA TODAS LAS MARCAS</h2>
+                <h2 class="text-2xl font-bold text-white mt-36 mb-10">SERVICIO DE REPARACIÓN PARA TODAS LAS MARCAS</h2>
 
                 <!-- carousel -->
                 <Carousel v-bind="branchesSettings" :breakpoints="BranchesBreakpoints">
@@ -71,6 +71,25 @@
                         <Navigation />
                     </template>
                 </Carousel>
+
+                <div class="border-t border-[#5F5F5F] my-14"></div>
+            </section>
+
+            <!-- sección 4 Galería de trabajos -->
+            <section class="mt-14 py-8 px-5 lg:mx-32">
+                <h2 class="text-2xl text-center font-bold text-white mb-7">GALERÍA DE TRABAJOS</h2>
+                <p class="text-white text-lg text-center mb-12">Contamos con más de 5 años de experiencia</p>
+
+                <div>
+                    <el-carousel :interval="3000" type="card" :height="galeryCarouselHeight">
+                        <el-carousel-item v-for="item in galery" :key="item">
+                            <figure class="md:w-[80%] w-[89%] mx-auto">
+                                <img class="mx-auto mt-4 object-contain" :src="item" alt="">
+                            </figure>
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+
             </section>
 
         </main>
@@ -98,6 +117,14 @@ import lg from '@/../../public/images/lg.png';
 import daewoo from '@/../../public/images/daewoo.png';
 import panasonic from '@/../../public/images/panasonic.png';
 import bosch from '@/../../public/images/bosch.png';
+import galery_1 from '@/../../public/images/galery_1.png';
+import galery_2 from '@/../../public/images/galery_2.png';
+import galery_3 from '@/../../public/images/galery_3.png';
+import galery_4 from '@/../../public/images/galery_4.png';
+import galery_5 from '@/../../public/images/galery_5.png';
+import galery_6 from '@/../../public/images/galery_6.png';
+import galery_7 from '@/../../public/images/galery_7.png';
+import galery_8 from '@/../../public/images/galery_8.png';
 
 //carousel
 import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
@@ -108,6 +135,7 @@ data() {
     
     return {
         carouselHeight: '500px', //tamaño del carusel de elemen plus
+        galeryCarouselHeight: '450px', //tamaño del carusel de elemen plus
         groupImages1: [
             Group1_1,
             Group1_2,
@@ -128,6 +156,16 @@ data() {
             bosch,
             mabe,
             lg,
+        ],
+        galery: [
+            galery_1,
+            galery_2,
+            galery_3,
+            galery_4,
+            galery_5,
+            galery_6,
+            galery_7,
+            galery_8,
         ],
         fletesMudanzasSettings: {
             wrapAround: true,
@@ -197,8 +235,10 @@ methods:{
       const width = window.innerWidth;
       if (width < 430) {
         this.carouselHeight = '300px';
+        this.galeryCarouselHeight = '300px';
       } else if (width >= 430 && width < 1024) {
         this.carouselHeight = '480px';
+        this.galeryCarouselHeight = '430px';
       } else if (width >= 1024 && width < 1350) {
         this.carouselHeight = '330px';
       } else {
@@ -226,11 +266,11 @@ beforeUnmount() {
 }
 
 .el-carousel__item:nth-child(2n) {
-  background-color: transparent;
+  background-color: #292929;
 }
 
 .el-carousel__item:nth-child(2n + 1) {
-  background-color: transparent;
+  background-color: #292929;
 }
 
 .el-carousel__arrow {
