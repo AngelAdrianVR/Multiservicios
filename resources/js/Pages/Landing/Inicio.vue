@@ -96,12 +96,34 @@
                         </el-timeline-item>
                     </el-timeline>
                 </div>
+
+                <div class="col-span-full border-t border-[#5F5F5F] my-14"></div>
             </section>
 
 
-            <!-- sección 5. Estadisticas -->
-            <section class="grid md:grid-cols-3 grid-cols-2 gap-7 py-20 px-5 lg:mx-32">
-                <StatisticCard v-for="item in statistics" :key="item" :label="item.label" :value="item.value" />
+            <!-- sección 5. Formas de pago -->
+            <section class="px-5 lg:mx-32 pb-14">
+                <h2 class="text-white text-2xl text-center font-bold">Aceptamos las siguientes formas de pago</h2>
+                <article class="flex space-x-12 justify-center mt-12">
+
+                    <!-- efectivo -->
+                    <div>
+                        <p class="text-white text-lg">Efectivo</p>
+                        <img class="w-20 mt-4 mx-auto" src="@/../../public/images/efectivo.png" alt="">
+                    </div>
+
+                    <!-- transferencia -->
+                    <div>
+                        <p class="text-white text-lg">Transferencia</p>
+                        <img class="w-20 mx-auto" src="@/../../public/images/transferencia.png" alt="">
+                    </div>
+
+                    <!-- deposito -->
+                    <div>
+                        <p class="text-white text-lg">Deposito</p>
+                        <img class="w-20 mx-auto" src="@/../../public/images/deposito.png" alt="">
+                    </div>
+                </article>
             </section>
 
             <!-- footer -->
@@ -115,7 +137,6 @@
 import LandingLayout from '@/Layouts/LandingLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Footer from '@/Components/MyComponents/Landing/Footer.vue';
-import StatisticCard from '@/Components/MyComponents/Landing/StatisticCard.vue';
 
 //imagenes
 import Group1_1 from '@/../../public/images/Group1_1.png';
@@ -143,20 +164,6 @@ data() {
     
     return {
         carouselHeight: '500px', //tamaño del carusel de elemen plus
-        statistics: [
-            {
-                label: "Fletes y mudanzas",
-                value: '+500',
-            },
-            {
-                label: "Reparaciones y mantenimiento",
-                value: '+1,000',
-            },
-            {
-                label: "Instalaciones",
-                value: '+800',
-            },
-        ],
         groupImages1: [
             Group1_1,
             Group1_2,
@@ -238,7 +245,6 @@ data() {
 components:{
     LandingLayout,
     PrimaryButton,
-    StatisticCard,
     Navigation,
     Pagination,
     Carousel,

@@ -95,13 +95,13 @@ html {
         <div class="min-h-screen bg-[#343434]">
             <nav :class="['navbar', { 'fixed-navbar': isNavbarFixed }]" class="bg-[#343434] py-1 px-9">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-full px-4 sm:px-6 lg:px-8">
+                <div class="max-w-full sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex justify-between w-full mr-16">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('home')">
-                                    <ApplicationMark class="block h-12 w-auto" />
+                                    <ApplicationMark class="block h-9 md:h-12 w-auto" />
                                 </Link>
                             </div>
 
