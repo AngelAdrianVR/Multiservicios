@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { Head, Link, router  } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -12,7 +12,35 @@ defineProps({
     title: String,
 });
 
+// Variables reactivas
+const isNavbarFixed = ref(true);
+const lastScrollY = ref(0);
+
 const showingNavigationDropdown = ref(false);
+
+// Función para manejar el scroll
+const handleScroll = () => {
+  const currentScrollY = window.scrollY;
+
+  if (currentScrollY > lastScrollY.value && currentScrollY > window.innerHeight) {
+    // Si se hace scroll hacia abajo y se ha pasado el alto de la pantalla
+    isNavbarFixed.value = false;
+  } else {
+    // Si se hace scroll hacia arriba
+    isNavbarFixed.value = true;
+  }
+
+  lastScrollY.value = currentScrollY;
+};
+
+// Ciclos de vida del componente
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
@@ -34,14 +62,15 @@ const goToWhatsApp = () => {
 
 <style>
 /* Estilos para la barra de navegación */
-/* .navbar {
+.navbar {
     position: absolute;
     top: 0;
-    background-color: #ffffff;
+    background-color: #343434;
     opacity: 0.9;
 }
 .fixed-navbar {
     position: fixed;
+    width: 100%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 100;
 }
@@ -54,7 +83,7 @@ html {
   --el-segmented-item-selected-color: #FFFFFF;
   --el-segmented-item-selected-bg-color: #a1a1a1;
   --el-border-radius-base: 16px;
-} */
+}
 </style>
 
 <template>
@@ -64,15 +93,15 @@ html {
         <Banner />
 
         <div class="min-h-screen bg-[#343434]">
-            <nav :class="['navbar', { 'fixed-navbar': isNavbarFixed }]" class="bg-[#343434] py-1 lg:mx-16">
+            <nav :class="['navbar', { 'fixed-navbar': isNavbarFixed }]" class="bg-[#343434] py-1 px-9">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-full px-4 sm:px-6 lg:px-8">
+                <div class="max-w-full sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex justify-between w-full mr-16">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('home')">
-                                    <ApplicationMark class="block h-12 w-auto" />
+                                    <ApplicationMark class="block h-9 md:h-12 w-auto" />
                                 </Link>
                             </div>
 
@@ -81,7 +110,7 @@ html {
                                 <NavLink :href="route('home')" :active="route().current('home')">
                                     Inicio
                                 </NavLink>
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                <NavLink :href="route('services')" :active="route().current('services')">
                                     Servicios
                                 </NavLink>
                                 <button @click="goToWhatsApp" class="text-gray-400 hover:text-white">
@@ -126,7 +155,7 @@ html {
                         <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
                             Inicio
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <ResponsiveNavLink :href="route('services')" :active="route().current('services')">
                             Servicios
                         </ResponsiveNavLink>
                     </div>

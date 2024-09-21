@@ -1,10 +1,10 @@
 <template>
-    <LandingLayout :title="'Bienvenidos'">
-        <main class="">
+    <LandingLayout :title="'Inicio'">
+        <main class="selection:bg-primary">
             <!-- Seccion 1 -->
-            <section class="lg:grid grid-cols-2 gap-12 items-center py-7 px-5 lg:py-14 lg:px-20">
+            <section class="lg:grid grid-cols-2 gap-12 items-center py-7 px-5 lg:py-20 lg:px-20">
                 <div class="my-9 text-center lg:text-left lg:ml-14">
-                    <h2 class="text-xl md:text-3xl text-white font-bold mb-16">Mantenimiento experto y mudanza sin complicaciones, todo en un solo lugar</h2>
+                    <h2 class="text-2xl md:text-3xl text-white font-bold mb-16">Mantenimiento experto y mudanza sin complicaciones, todo en un solo lugar</h2>
                     <PrimaryButton @click="goToWhatsApp">Contáctanos</PrimaryButton>
                 </div>
                 
@@ -15,7 +15,7 @@
                 </el-carousel>
             </section>
 
-            <!-- Seccion 2 Fletes y mudanzas -->
+            <!-- Seccion 2. Fletes y mudanzas -->
             <section>
                 <h2 class="text-2xl font-bold text-white text-center mt-36 mb-8">NUESTROS SERVICIOS</h2>
                 <article class="bg-[#292929] pt-8 pb-28 md:px-14 px-5 md:flex md:space-x-5 relative">
@@ -45,7 +45,7 @@
                 </article>
             </section>
 
-            <!-- seccion 3 Mantenimiento y reparación -->
+            <!-- seccion 3. Mantenimiento y reparación -->
             <section class="mt-40 py-8 px-5 lg:mx-32">
                 <article class="md:flex md:space-x-5">
                     <figure class="md:w-2/3">
@@ -53,7 +53,7 @@
                     </figure>
 
                     <div class="md:w-1/3 mt-10 md:mt-0">
-                        <h3 class="text-xl font-bold text-white mb-10">MANTENIMIENTO Y SERVICIO TÉCNICO</h3>
+                        <h3 class="text-2xl font-bold text-white mb-10">MANTENIMIENTO Y SERVICIO TÉCNICO</h3>
                         <p class="text-white text-lg">Ofrecemos mantenimiento y servicio técnico especializado para una amplia gama de electrodomésticos, desde refrigeradores, lavadoras, hasta aires acondicionados y mucho más.</p>
                         <img class="mt-9" src="@/../../public/images/Mantenimiento_2.png" alt="">
                     </div>
@@ -75,23 +75,59 @@
                 <div class="border-t border-[#5F5F5F] my-14"></div>
             </section>
 
-            <!-- sección 4 Galería de trabajos -->
-            <section class="mt-14 py-8 px-5 lg:mx-32">
-                <h2 class="text-2xl text-center font-bold text-white mb-7">GALERÍA DE TRABAJOS</h2>
-                <p class="text-white text-lg text-center mb-12">Contamos con más de 5 años de experiencia</p>
+            <!-- seccion 4. Rutas -->
+            <section class="md:grid grid-cols-2 gap-3 py-20 px-5 lg:mx-32">
+                <figure>
+                    <img src="@/../../public/images/map.png" alt="">
+                </figure>
 
-                <div>
-                    <el-carousel :interval="3000" type="card" :height="galeryCarouselHeight">
-                        <el-carousel-item v-for="item in galery" :key="item">
-                            <figure class="md:w-[80%] w-[89%] mx-auto">
-                                <img class="mx-auto mt-4 object-contain" :src="item" alt="">
-                            </figure>
-                        </el-carousel-item>
-                    </el-carousel>
+                <div class="flex space-x-16 mt-9 md:mt-3">
+                    <div class="text-right font-bold">
+                        <h2 class="text-white text-4xl">Nuestras</h2>
+                        <h3 class="text-primary text-4xl">rutas</h3>
+                    </div>
+
+                    <el-timeline style="max-width: 600px">
+                        <el-timeline-item
+                            v-for="activity in activities"
+                            :key="activity"
+                            >
+                            <p class="text-white">{{ activity }}</p>
+                        </el-timeline-item>
+                    </el-timeline>
                 </div>
 
+                <div class="col-span-full border-t border-[#5F5F5F] my-14"></div>
             </section>
 
+
+            <!-- sección 5. Formas de pago -->
+            <section class="px-5 lg:mx-32 pb-14">
+                <h2 class="text-white text-2xl text-center font-bold">Aceptamos las siguientes formas de pago</h2>
+                <article class="flex space-x-12 justify-center mt-12">
+
+                    <!-- efectivo -->
+                    <div>
+                        <p class="text-white text-lg">Efectivo</p>
+                        <img class="w-20 mt-4 mx-auto" src="@/../../public/images/efectivo.png" alt="">
+                    </div>
+
+                    <!-- transferencia -->
+                    <div>
+                        <p class="text-white text-lg">Transferencia</p>
+                        <img class="w-20 mx-auto" src="@/../../public/images/transferencia.png" alt="">
+                    </div>
+
+                    <!-- deposito -->
+                    <div>
+                        <p class="text-white text-lg">Deposito</p>
+                        <img class="w-20 mx-auto" src="@/../../public/images/deposito.png" alt="">
+                    </div>
+                </article>
+            </section>
+
+            <!-- footer -->
+            <Footer />  
         </main>
     </LandingLayout>
 </template>
@@ -100,6 +136,7 @@
 //general
 import LandingLayout from '@/Layouts/LandingLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import Footer from '@/Components/MyComponents/Landing/Footer.vue';
 
 //imagenes
 import Group1_1 from '@/../../public/images/Group1_1.png';
@@ -117,14 +154,6 @@ import lg from '@/../../public/images/lg.png';
 import daewoo from '@/../../public/images/daewoo.png';
 import panasonic from '@/../../public/images/panasonic.png';
 import bosch from '@/../../public/images/bosch.png';
-import galery_1 from '@/../../public/images/galery_1.png';
-import galery_2 from '@/../../public/images/galery_2.png';
-import galery_3 from '@/../../public/images/galery_3.png';
-import galery_4 from '@/../../public/images/galery_4.png';
-import galery_5 from '@/../../public/images/galery_5.png';
-import galery_6 from '@/../../public/images/galery_6.png';
-import galery_7 from '@/../../public/images/galery_7.png';
-import galery_8 from '@/../../public/images/galery_8.png';
 
 //carousel
 import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
@@ -135,7 +164,6 @@ data() {
     
     return {
         carouselHeight: '500px', //tamaño del carusel de elemen plus
-        galeryCarouselHeight: '450px', //tamaño del carusel de elemen plus
         groupImages1: [
             Group1_1,
             Group1_2,
@@ -156,16 +184,6 @@ data() {
             bosch,
             mabe,
             lg,
-        ],
-        galery: [
-            galery_1,
-            galery_2,
-            galery_3,
-            galery_4,
-            galery_5,
-            galery_6,
-            galery_7,
-            galery_8,
         ],
         fletesMudanzasSettings: {
             wrapAround: true,
@@ -213,6 +231,15 @@ data() {
                 snapAlign: 'start',
             },
         },
+        activities: [
+            'Guadalajara',
+            'Tlajomulco',
+            'Tonalá',
+            'Chapala',
+            'Tepic',
+            'Sinaloa',
+            'Mazatlán',
+        ]
     }
 },
 components:{
@@ -221,6 +248,7 @@ components:{
     Navigation,
     Pagination,
     Carousel,
+    Footer,
     Slide,
 },
 props:{
@@ -247,18 +275,18 @@ methods:{
     },
 },
 mounted() {
-  this.updateCarouselHeight();
-  window.addEventListener('resize', this.updateCarouselHeight);
+    this.updateCarouselHeight();
+    window.addEventListener('resize', this.updateCarouselHeight);
 },
 beforeUnmount() {
-  window.removeEventListener('resize', this.updateCarouselHeight);
+    window.removeEventListener('resize', this.updateCarouselHeight);
 },
 }
 </script>
 
 <style>
 .el-carousel__item h3 {
-  color: #475669;
+  color: transparent;
   opacity: 0.75;
   line-height: 150px;
   margin: 0;
@@ -266,11 +294,11 @@ beforeUnmount() {
 }
 
 .el-carousel__item:nth-child(2n) {
-  background-color: #292929;
+  background-color: transparent;
 }
 
 .el-carousel__item:nth-child(2n + 1) {
-  background-color: #292929;
+  background-color: transparent;
 }
 
 .el-carousel__arrow {
