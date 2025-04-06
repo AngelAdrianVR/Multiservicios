@@ -3,14 +3,14 @@
         <ApplicationMark class="block h-7 md:h-9 lg:h-12 w-auto" />
 
         <!-- logo dtw -->
-        <a href="https://app.dtw.com.mx/" target="_blank" class="flex items-center space-x-3 text-white">
+        <a href="https://dtw.com.mx/" target="_blank" class="flex items-center space-x-3 text-white">
             <p>By</p>
-            <img class="w-12 md:w-16 lg:w-20" src="@/../../public/images/dtw_white_logo.png" alt="">
+            <img class="w-12 md:w-16 lg:w-24" src="@/../../public/images/dtw_white_logo.png" alt="">
         </a>
 
-        <div class="text-xs flex items-center space-x-3 text-white absolute left-2 bottom-14">
-            <p>Copyright</p>
-            <p>Mantenimiento y mudanza 2024. Todos los derechos reservados.</p>
+        <div class="text-xs flex items-center space-x-2 text-white absolute left-2 bottom-14">
+            <p>Copyright &copy;</p>
+            <p>Mantenimiento y mudanza {{ currentYear }}. Todos los derechos reservados.</p>
         </div>
 
         <div class="text-xs flex items-center space-x-3 text-white absolute left-2 bottom-1">
@@ -30,6 +30,11 @@
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 
 export default {
+    data() {
+        return {
+            currentYear: new Date().getFullYear()
+        }
+    },
 components: {
     ApplicationMark
 }
