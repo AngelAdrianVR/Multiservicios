@@ -124,15 +124,15 @@ data() {
         statistics: [
             {
                 label: "Fletes y mudanzas",
-                value: '+500',
+                value: '+150',
             },
             {
                 label: "Reparaciones y mantenimiento",
-                value: '+1,000',
+                value: '+400',
             },
             {
                 label: "Instalaciones",
-                value: '+800',
+                value: '+100',
             },
         ],
     }
